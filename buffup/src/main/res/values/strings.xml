@@ -1,0 +1,4 @@
+<resources>
+    <string name="buff_app_name">Buffup</string>
+    <string name="buff_missing_initialization_exception">Looks like Buffup hasn\'t been initialized or the Auth Key is invalid</string>
+</resources>

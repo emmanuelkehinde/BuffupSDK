@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <size
+        android:width="@dimen/buff_question_answer_index_textview_size"
+        android:height="@dimen/buff_question_answer_index_textview_size" />
+
+    <solid android:color="@color/buff_text_dark" />
+</shape>

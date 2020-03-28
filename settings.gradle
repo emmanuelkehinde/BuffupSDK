@@ -1,0 +1,2 @@
+include ':app', ':buffup'
+rootProject.name='Buffdemo'
