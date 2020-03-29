@@ -482,7 +482,7 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
                 disableBuffView()
 
                 // Close BuffView after 2 seconds
-                Handler().postDelayed({
+                mHandler.postDelayed({
                     closeBuffView()
                 }, POST_ANSWER_BUFF_DISMISS_DURATION)
 
