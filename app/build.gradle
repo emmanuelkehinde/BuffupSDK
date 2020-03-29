@@ -46,6 +46,10 @@ dependencies {
     //Buffup SDK
     implementation project(':buffup')
 
+    //Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
     //Exoplayer
     implementation "com.google.android.exoplayer:exoplayer-core:$rootProject.exoplayer_version"
     implementation "com.google.android.exoplayer:exoplayer-ui:$rootProject.exoplayer_version"

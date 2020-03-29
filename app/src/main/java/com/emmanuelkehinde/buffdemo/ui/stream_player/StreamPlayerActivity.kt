@@ -6,7 +6,10 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.emmanuelkehinde.buffdemo.R
+import com.emmanuelkehinde.buffdemo.extensions.showToast
 import com.emmanuelkehinde.buffup.listeners.EventListener
 import com.emmanuelkehinde.buffup.model.Buff
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -17,10 +20,11 @@ import kotlinx.android.synthetic.main.activity_stream_player.*
 
 class StreamPlayerActivity : AppCompatActivity() {
 
-    private val VIDEO_URL = "https://buffup-public.s3.eu-west-2.amazonaws.com/video/toronto+nba+cut+3.mp4"
-    private val APP_NAME = "BuffDemo"
-
     private val player: SimpleExoPlayer? = null
+
+    private val streamPlayerViewModel: StreamPlayerViewModel by lazy {
+        ViewModelProviders.of(this).get(StreamPlayerViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,23 +34,26 @@ class StreamPlayerActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_stream_player)
 
-        if (VIDEO_URL.isNotEmpty()) {
-            prepareExoPlayer()
-            initializeBuffView()
-        }
+        streamPlayerViewModel.videoUrl.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                prepareExoPlayer(it)
+                initializeBuffView()
+            }
+        })
+
     }
 
-    private fun prepareExoPlayer() {
+    private fun prepareExoPlayer(videoUrl: String) {
         val player = SimpleExoPlayer.Builder(this).build()
         playerView.player = player
 
         // Produces DataSource instances through which media data is loaded.
         val dataSourceFactory = DefaultDataSourceFactory(this,
-            getUserAgent(this, APP_NAME))
+            getUserAgent(this, getString(R.string.app_name)))
 
         // This is the MediaSource representing the media to be played.
         val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(VIDEO_URL.toUri())
+            .createMediaSource(videoUrl.toUri())
 
         // Prepare the player with the source.
         player.prepare(videoSource)
@@ -55,20 +62,24 @@ class StreamPlayerActivity : AppCompatActivity() {
     }
 
     private fun initializeBuffView() {
-
-        buffView.setupWithStream("12345")
+        buffView.setupWithStream("stream_id")
         buffView.addListener(object : EventListener {
             override fun onBuffDisplayed(buff: Buff) {
                 super.onBuffDisplayed(buff)
-                print("Buff Displayed")
+                Log.d(this.javaClass.simpleName,"Buff Displayed")
+            }
+
+            override fun onBuffAnswerSelected(answer: Buff.Answer) {
+                super.onBuffAnswerSelected(answer)
+                showToast("Answer selected: ${answer.title}")
+            }
+
+            override fun onBuffError(t: Throwable) {
+                super.onBuffError(t)
+                showToast("Error: ${t.localizedMessage}")
             }
         })
         buffView.start(this)
-
-        try {
-        } catch (e: Exception) {
-            Log.e(this.localClassName, e.localizedMessage)
-        }
 
     }
 
@@ -76,7 +87,7 @@ class StreamPlayerActivity : AppCompatActivity() {
         player?.stop()
         player?.release()
 
-        //Stop buffview
+        //Stop BuffView
         buffView.stop()
 
         super.onStop()

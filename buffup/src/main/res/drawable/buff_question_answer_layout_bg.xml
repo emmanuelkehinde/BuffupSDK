@@ -6,8 +6,8 @@
     <corners android:radius="@dimen/buff_question_answer_layout_corner_radius" />
 
     <padding
-        android:bottom="@dimen/buff_size_small"
-        android:left="@dimen/buff_size_small"
+        android:bottom="@dimen/buff_size_tiny"
+        android:left="@dimen/buff_size_tiny"
         android:right="@dimen/buff_question_answer_layout_padding_right"
-        android:top="@dimen/buff_size_small" />
+        android:top="@dimen/buff_size_tiny" />
 </shape>

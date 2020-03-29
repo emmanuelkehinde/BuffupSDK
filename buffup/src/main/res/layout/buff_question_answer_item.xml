@@ -2,29 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/buff_question_answer_layout_bg"
     android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/indexText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/buff_size_small"
-        android:background="@drawable/buff_question_answer_index_bg"
-        android:gravity="center"
-        android:maxLength="1"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        tools:text="A" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/answerImage"
+        android:layout_width="@dimen/buff_answer_index_image_width"
+        android:layout_height="@dimen/buff_answer_index_image_width"
+        android:layout_marginEnd="@dimen/buff_size_tiny"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/answerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingEnd="@dimen/buff_size_medium"
+        android:paddingRight="@dimen/buff_size_medium"
         android:textColor="@color/buff_text_dark"
         android:textSize="12sp"
+        android:textStyle="bold"
         tools:text="Yes he will" />
 
 </LinearLayout>
