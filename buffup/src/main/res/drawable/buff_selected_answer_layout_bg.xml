@@ -8,6 +8,6 @@
     <padding
         android:bottom="@dimen/buff_size_tiny"
         android:left="@dimen/buff_size_tiny"
-        android:right="@dimen/buff_question_answer_layout_padding_right"
+        android:right="@dimen/buff_size_tiny"
         android:top="@dimen/buff_size_tiny" />
 </shape>

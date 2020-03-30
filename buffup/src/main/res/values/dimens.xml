@@ -10,7 +10,6 @@
     <dimen name="buff_question_layout_corner_radius">8dp</dimen>
     <dimen name="buff_circular_countdown_size">32dp</dimen>
     <dimen name="buff_countdown_timer_text_size">12sp</dimen>
-    <dimen name="buff_question_answer_layout_padding_right">24dp</dimen>
     <dimen name="buff_question_answer_layout_corner_radius">30dp</dimen>
     <dimen name="buff_buffview_layout_margin">20dp</dimen>
     <dimen name="buff_answer_row_margin_bottom">3dp</dimen>
@@ -19,4 +18,5 @@
     <dimen name="buff_author_image_height">28dp</dimen>
     <dimen name="buff_answer_index_image_width">24dp</dimen>
     <dimen name="buff_answer_index_image_height">24dp</dimen>
+    <dimen name="buff_answers_layout_margin_right">64dp</dimen>
 </resources>

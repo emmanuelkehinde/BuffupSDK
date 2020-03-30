@@ -35,6 +35,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+    //MotionLayout support
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta4'
+
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 

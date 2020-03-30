@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.emmanuelkehinde.buffup.Buffup
@@ -428,9 +429,6 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
     private fun setCountDownTimerView(seconds: Int) {
         timerView = buffView?.findViewById(R.id.circularCountDown)
 
-        /* Make timerView visible */
-        timerView?.alpha = 1.0f
-
         // Disable repeated iterations
         timerView?.disableLoop()
 
@@ -461,7 +459,7 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
         answersLayout?.removeAllViews()
 
         for (answer in answers) {
-            val answerRowView = inflateAnswerRowView(answersLayout)
+            val answerRowView = inflateAnswerRowView(answersLayout) as? MotionLayout
 
             // Set Answer index image
             val indexImageView = answerRowView?.findViewById<CircleImageView>(R.id.answerImage)
@@ -473,22 +471,42 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
             answerTextView?.text = answer.title
             answerTextView?.setTextColor(answerRowTextColor)
 
-            // Set answer click listener
-            answerRowView?.setOnClickListener {
-                answerRowView.background = selectedAnswerRowBackground
-                answerTextView?.setTextColor(selectedAnswerRowTextColor)
+            // Set transition listener for the answer swipe
+            answerRowView?.setTransitionListener(object : MotionLayout.TransitionListener {
+                override fun onTransitionTrigger(
+                    motionLayout: MotionLayout?,
+                    idStart: Int,
+                    idEnd: Boolean,
+                    progess: Float
+                ) {
+                }
 
-                stopTimer()
-                disableBuffView()
+                override fun onTransitionStarted(motionLayout: MotionLayout?, idStart: Int, idEnd: Int) {
+                }
 
-                // Close BuffView after 2 seconds
-                mHandler.postDelayed({
-                    closeBuffView()
-                }, POST_ANSWER_BUFF_DISMISS_DURATION)
+                override fun onTransitionChange(motionLayout: MotionLayout?, idStart: Int, idEnd: Int, progress: Float) {
+                }
 
-                // Fire callback event implemented in the host activity
-                listener?.onBuffAnswerSelected(answer)
-            }
+                override fun onTransitionCompleted(motionLayout: MotionLayout?, idCurrent: Int) {
+                    /* Check if user completely transitioned to the right */
+                    if (idCurrent == motionLayout?.endState) {
+                        answerRowView.background = selectedAnswerRowBackground
+                        answerTextView?.setTextColor(selectedAnswerRowTextColor)
+
+                        stopTimer()
+                        disableBuffView()
+
+                        // Close BuffView after 2 seconds
+                        mHandler.postDelayed({
+                            closeBuffView()
+                        }, POST_ANSWER_BUFF_DISMISS_DURATION)
+
+                        // Fire callback event implemented in the host activity
+                        listener?.onBuffAnswerSelected(answer)
+                    }
+                }
+
+            })
 
             // Add row to the layout
             answersLayout?.addView(answerRowView)
@@ -533,7 +551,6 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
      */
     private fun stopTimer() {
         timerView?.stop()
-        timerView?.animate()?.setDuration(1000)?.alpha(0.0f)
     }
 
     /**
@@ -552,7 +569,13 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
      */
     private fun View.disableBuffView() {
         isEnabled = false
-        if (this is ViewGroup) children.forEach { child -> child.disableBuffView() }
+        if (this is ViewGroup) {
+            //Disable further motion transition
+            if (this is MotionLayout) {
+                this.getTransition(R.id.answerImageTransition)?.setEnable(false)
+            }
+            children.forEach { child -> child.disableBuffView() }
+        }
     }
 
     /**
