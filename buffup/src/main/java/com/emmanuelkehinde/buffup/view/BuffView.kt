@@ -461,7 +461,7 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
         for (answer in answers) {
             val answerRowView = inflateAnswerRowView(answersLayout) as? MotionLayout
 
-            // Set Answer index image
+            // Set answer index image
             val indexImageView = answerRowView?.findViewById<CircleImageView>(R.id.answerImage)
             Picasso.get().load(answer.imageModel.image1?.url).into(indexImageView)
 

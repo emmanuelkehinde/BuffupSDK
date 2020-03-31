@@ -14,11 +14,7 @@ class StreamPlayerViewModel: ViewModel() {
     val videoUrl: LiveData<String>
         get() = _videoUrl
 
-    init {
-        fetchVideoUrl()
-    }
-
-    private fun fetchVideoUrl() {
+    fun fetchVideoUrl() {
         _videoUrl.value = VIDEO_URL
     }
 }

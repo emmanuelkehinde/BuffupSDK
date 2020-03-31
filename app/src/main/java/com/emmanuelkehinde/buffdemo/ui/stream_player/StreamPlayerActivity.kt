@@ -33,6 +33,8 @@ class StreamPlayerActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_stream_player)
+        //Fetch the VideoUrl to play
+        streamPlayerViewModel.fetchVideoUrl()
 
         streamPlayerViewModel.videoUrl.observe(this, Observer {
             if (it.isNotEmpty()) {
@@ -62,7 +64,7 @@ class StreamPlayerActivity : AppCompatActivity() {
     }
 
     private fun initializeBuffView() {
-        buffView.setupWithStream("stream_id")
+        buffView.setupWithStream("STREAM_ID")
         buffView.addListener(object : EventListener {
             override fun onBuffDisplayed(buff: Buff) {
                 super.onBuffDisplayed(buff)
