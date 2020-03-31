@@ -12,6 +12,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Created by Emmanuel Kehinde on 2020-03-31.
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)

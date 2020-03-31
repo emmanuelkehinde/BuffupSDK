@@ -46,6 +46,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
 
     //Buffup SDK
     implementation project(':buffup')
@@ -57,5 +58,4 @@ dependencies {
     //Exoplayer
     implementation "com.google.android.exoplayer:exoplayer-core:$rootProject.exoplayer_version"
     implementation "com.google.android.exoplayer:exoplayer-ui:$rootProject.exoplayer_version"
-    androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
 }

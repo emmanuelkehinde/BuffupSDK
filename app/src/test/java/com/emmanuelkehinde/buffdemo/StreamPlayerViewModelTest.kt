@@ -30,7 +30,7 @@ class StreamPlayerViewModelTest {
 
     @Before
     fun setUp() {
-        streamPlayerViewModel = StreamPlayerViewModel() //
+        streamPlayerViewModel = StreamPlayerViewModel()
     }
 
     @Test

@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName
  * Created by Emmanuel Kehinde on 2020-03-27.
  */
 data class Buff(
-    val id: Long?,
-    val priority: Int,
-    val author: Author?,
-    val question: Question?,
-    val answers: List<Answer>?,
+    val id: Long? = null,
+    val priority: Int? = null,
+    val author: Author? = null,
+    val question: Question? = null,
+    val answers: List<Answer>? = null,
 
     @SerializedName("time_to_show")
-    val timeToShow: Int?
+    val timeToShow: Int? = null
 ) {
 
     data class Author(
