@@ -370,6 +370,7 @@ class BuffView(context: Context, attrs: AttributeSet): LinearLayout(context, att
             headerView?.findViewById<ImageButton>(R.id.closeBuffIcon)
         closeButton?.setImageDrawable(closeIcon)
         closeButton?.setOnClickListener {
+            stopTimer()
             closeBuffView()
         }
 
