@@ -50,8 +50,9 @@ fetching and displaying Buffs.
 >
         buffView.start(this)
 
-**4.** Finally, initialize Buffup in your `Application` class, passing
-in the `AUTHENTICATION_KEY` you obtain from Buffup.
+**4.** Finally, initialize Buffup in your `Application` class by calling
+the `initialize()` function, passing in the `AUTHENTICATION_KEY` you
+obtained from Buffup.
 
 >
         class App: Application() {
@@ -117,7 +118,7 @@ You can also customize your BuffView programmatically as shown below.
         buffView.answerRowBackground = ContextCompat.getDrawable(this, R.drawable.buff_question_answer_layout_bg)
         buffView.selectedAnswerRowTextColor = ContextCompat.getColor(this, R.color.white) 
 
-#### List of Attributes
+### List of Attributes
 
 Here is a table showing all the available attributes and their format.
 
