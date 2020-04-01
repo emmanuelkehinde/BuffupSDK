@@ -11,9 +11,10 @@
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/buff_size_tiny"
+        android:layout_marginTop="@dimen/buff_size_tiny"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/authorInfoContainer"
@@ -26,9 +27,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/authorImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/buff_author_image_width"
+                android:layout_height="@dimen/buff_author_image_height"
                 android:layout_marginEnd="@dimen/buff_size_small"
+                android:layout_marginStart="@dimen/buff_size_tiny"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@color/buff_white"
                 />
@@ -56,11 +58,11 @@
         android:id="@+id/questionLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/buff_size_small"
+        android:layout_marginBottom="@dimen/buff_size_tiny"
         android:background="@drawable/buff_question_layout_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/questionText"
@@ -85,8 +87,9 @@
 
     <LinearLayout
         android:id="@+id/answersLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/buff_answers_layout_margin_right"
         android:animateLayoutChanges="true"
         android:orientation="vertical" />
 
