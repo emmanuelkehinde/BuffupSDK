@@ -33,7 +33,7 @@ class StreamPlayerActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_stream_player)
-        //Fetch the VideoUrl to play
+        //Fetch the url of the video to be viewed
         streamPlayerViewModel.fetchVideoUrl()
 
         streamPlayerViewModel.videoUrl.observe(this, Observer {

@@ -19,6 +19,12 @@ class BuffApiService {
         private const val BASE_URL = "https://buffup.proxy.beeceptor.com/"
         private const val GET_BUFF_WITH_ID_ENDPOINT = "buffs/%s"
 
+        /**
+         * Fetches Buffs from the Buff API using their buff ids
+         *
+         * @param buffId The ID of the buff to be fetched
+         * @return BuffResult
+         */
         internal suspend fun getBuff(buffId: String): BuffResult {
             var response: BuffApiResponse? = null
             withContext(Dispatchers.IO) {
