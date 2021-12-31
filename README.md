@@ -10,7 +10,7 @@ This SDK allows you to integrate Buffs into your sports android apps.
 
 ### Gradle
 
-Add this in your root build.gradle
+Add this in your root `build.gradle`
 >
         allprojects {
           repositories {
@@ -18,7 +18,7 @@ Add this in your root build.gradle
           }
         }
 
-Add this in your app build.gradle
+Add this in your app `build.gradle`
 >
         dependencies {
           implementation 'com.github.emmanuelkehinde:BuffupSDK:1.0.0'
